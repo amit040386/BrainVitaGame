@@ -1,0 +1,143 @@
+.container {
+  width: 480px;
+  margin: 10px auto;
+  font-family: 'Cairo', sans-serif;
+  position: relative;
+
+  .end-game-container {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255,255,255,0.8);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    span {
+      &:first-child {
+        font-size: 5em;
+        line-height: 100px;
+      }
+
+      &:nth-child(2) {
+        font-size: 2em;
+        line-height: 50px;
+      }
+
+      &:nth-child(3) {
+        line-height: 20px;
+      }
+
+      &:nth-child(4) {
+        font-size: 2em;
+      }
+    }
+  }
+
+  .action-container {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.5em;
+
+    span {
+      cursor: pointer;
+      background: #3498db;
+      background-image: linear-gradient(to bottom, #3498db, #2980b9);
+      border-radius: 28px;
+      color: #ffffff;
+      padding: 10px 20px 10px 20px;
+      text-decoration: none;
+      font-size: 0.6em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+
+      &:hover {
+        background: #3cb0fd;
+        background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+        text-decoration: none;
+      }
+    }
+  }
+
+  .game-container {
+    height: 480px;
+    width: 100%;
+    padding: 30px;
+    box-sizing: border-box;
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(7, 60px);
+    grid-template-rows: 60px repeat(7, 60px) 60px;
+    grid-auto-flow: row;
+    background-color: #b31e1e;
+    border-radius: 50%;
+    box-shadow: inset 0 0 10px 0 rgba(0,0,0,0.5);
+
+    .cell {
+      padding: 5px;
+      margin: 5px;
+      color: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &.selected {
+        box-shadow: 0 0 1px 5px rgb(0 185 12);
+      }
+
+      &.empty,
+      &.filled {
+        border-radius: 50%;
+        cursor: pointer;
+        background: #821414 radial-gradient(circle at 50% 30%, rgba(34, 34, 33, 0), rgba(102, 102, 99, 0.2) 50%, #6b6b67 100%);
+      }
+
+      &.filled {
+        .marble-stage {
+          perspective: 240px;
+          perspective-origin: 50% 50%;
+          height: 100%;
+          width: 100%;
+
+          .marble {
+            display: inline-block;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            border-radius: 50%;
+            position: relative;
+            background: url(http://hop.ie/balls/images/tennisball.png) no-repeat;
+            background-size: 100%;
+
+            &:before {
+              content: "";
+              position: absolute;
+              top: 1%;
+              left: 5%;
+              width: 90%;
+              height: 90%;
+              border-radius: 50%;
+              background: radial-gradient(circle at 50% 0px, #dbf936, rgb(255 255 255 / 0%) 58%);
+              filter: blur(5px);
+              z-index: 2;
+            }
+            &:after {
+              content: "";
+              position: absolute;
+              border-radius: 100%;
+              width: 100%;
+              height: 100%;
+              top: 0;
+              left: 0;
+              background: radial-gradient(circle at 50% 30%, rgb(243 240 190 / 0%), rgb(241 237 174 / 20%) 50%, #d0ceb4 100%);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
